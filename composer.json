@@ -1,0 +1,7 @@
+{
+    "name": "web12/wp-easy-dialog-example",
+    "require": {
+        "threadi/wp-easy-dialog": "dev-master"
+    },
+    "minimum-stability": "dev"
+}

@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "2868584d359c05739bdc199c46a9adf3",
+    "packages": [
+        {
+            "name": "threadi/wp-easy-dialog",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/threadi/wp-easy-dialog.git",
+                "reference": "d3f8dd5f286d974a497badc317b79124f7ee2366"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/threadi/wp-easy-dialog/zipball/d3f8dd5f286d974a497badc317b79124f7ee2366",
+                "reference": "d3f8dd5f286d974a497badc317b79124f7ee2366",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Zwirner",
+                    "email": "info@thomaszwirner.de"
+                }
+            ],
+            "description": "Provides a simple react-driven dialog-modal for WordPress-backend.",
+            "support": {
+                "issues": "https://github.com/threadi/wp-easy-dialog/issues",
+                "source": "https://github.com/threadi/wp-easy-dialog/tree/master"
+            },
+            "time": "2024-07-31T10:02:57+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "threadi/wp-easy-dialog": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
