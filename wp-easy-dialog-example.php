@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:       WP Easy Dialog Example
- * Description:       Example usage of WP Easy Dialog.
+ * Plugin Name:       Easy Block Dialog for WordPress Example
+ * Description:       Example usage of Easy Block Dialog for WordPress.
  * Requires at least: 5.0
  * Requires PHP:      8.0
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Thomas Zwirner
  * Author URI:        https://www.thomaszwirner.de
  * License:           GPL-2.0-or-later
@@ -17,11 +17,11 @@
 /**
  * Add WP Dialog Easy scripts in wp-admin.
  */
-add_action( 'admin_enqueue_scripts', 'custom_dialog_embed' );
-function custom_dialog_embed(): void {
+add_action( 'admin_enqueue_scripts', 'edfw_example_dialog_embed' );
+function edfw_example_dialog_embed(): void {
     // define paths: adjust if necessary.
-    $path = trailingslashit(plugin_dir_path(__FILE__)).'vendor/threadi/wp-easy-dialog/';
-    $url = trailingslashit(plugin_dir_url(__FILE__)).'vendor/threadi/wp-easy-dialog/';
+    $path = trailingslashit(plugin_dir_path(__FILE__)).'vendor/threadi/easy-dialog-for-wordpress/';
+    $url = trailingslashit(plugin_dir_url(__FILE__)).'vendor/threadi/easy-dialog-for-wordpress/';
 
     // bail if path does not exist.
     if( !file_exists($path) ) {
@@ -64,8 +64,8 @@ function custom_dialog_embed(): void {
  */
 function wp_easy_dialog_add_dashboard_widgets(): void {
     wp_add_dashboard_widget(
-        'dashboard_widget',
-        __( 'WP Easy Dialog Example', 'wp-easy-dialog' ),
+        'easy_dialog_dashboard_widget',
+        __( 'Easy Dialog for WordPress Example', 'wp-easy-dialog-example' ),
         'wp_easy_dialog_dashboard_widget_function',
         null,
         null,
@@ -83,6 +83,7 @@ add_action( 'wp_dashboard_setup', 'wp_easy_dialog_add_dashboard_widgets' );
  * @return void
  */
 function wp_easy_dialog_dashboard_widget_function( $post, $callback_args ): void {
+    // create dialog #1.
     $dialog = array(
         'title' => 'My title',
         'texts' => array(
@@ -96,5 +97,43 @@ function wp_easy_dialog_dashboard_widget_function( $post, $callback_args ): void
             ),
         )
     );
-    echo '<a href="#" class="wp-easy-dialog" data-dialog="'.esc_attr(wp_json_encode($dialog)).'">Some link</a>';
+
+    // create dialog #2.
+    $dialog2 = array(
+        'id' => 'dialog2',
+        'title' => 'My title 2',
+        'texts' => array(
+            '<p>My text 2</p>'
+        ),
+        'buttons' => array(
+            array(
+                'action' => 'alert("ok2");',
+                'variant' => 'primary',
+                'text' => 'Click here'
+            ),
+        )
+    );
+
+    // create dialog #3.
+    $dialog3 = array(
+        'title' => 'My title 3',
+        'texts' => array(
+            '<p>My text 3</p>'
+        ),
+        'buttons' => array(
+            array(
+                'action' => 'edfw_open_dialog("dialog2");',
+                'variant' => 'primary',
+                'text' => 'Click here'
+            ),
+        )
+    );
+
+    // define dialog settings.
+    $dialog_settings = array(
+        'shouldCloseOnEsc' => true
+    );
+    echo '<a href="#" class="easy-dialog-for-wordpress" data-dialog="'.esc_attr(wp_json_encode($dialog)).'" data-dialog-settings="'.esc_attr(wp_json_encode($dialog_settings)).'">' . __( 'Dialog 1', 'wp-easy-dialog-example' ) .  '</a><br>';
+    echo '<a href="#" class="easy-dialog-for-wordpress" data-dialog="'.esc_attr(wp_json_encode($dialog2)).'" data-dialog-settings="'.esc_attr(wp_json_encode($dialog_settings)).'">' . __( 'Dialog 2', 'wp-easy-dialog-example' ) .  '</a><br>';
+    echo '<a href="#" class="easy-dialog-for-wordpress" data-dialog="'.esc_attr(wp_json_encode($dialog3)).'" data-dialog-settings="'.esc_attr(wp_json_encode($dialog_settings)).'">' . __( 'Open Dialog 2 via button (first open Button 2, than this one)', 'wp-easy-dialog-example' ) .  '</a>';
 }
